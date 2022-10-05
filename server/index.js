@@ -1,25 +1,24 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+import fetch from "node-fetch";
 
+dotenv.config();
 const app = express();
-const PORT = 8080;
-
+const PORT = 4002;
 app.use(cors());
-
-//allows us to see what's in 8088
-//configuring express for how to handle requests
+console.log(`Your api key is ${process.env.REACT_APP_API_KEY}`);
 app.get("/", (req, res) => {
-  res.send("hello again-we are the weather buddies");
+  res.json("Weather App Information");
 });
+let URL = `https://api.openweathermap.org/data/2.5/weather?zip=92111,us&APPID=${process.env.REACT_APP_API_KEY}&units=imperial`;
+console.log(process.env.REACT_APP_API_KEY, "API KIMBERLY");
 
 app.get("/api/weather", (req, res) => {
-  const apikey = "";
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=${apikey}`;
-
-  fetch(url) //making a request to openWeather app from backend, providing info to frontend to client
+  fetch(URL)
     .then((response) => response.json())
     .then((data) => {
       res.send(data);
     });
-
+});
 app.listen(PORT, () => console.log(`Hola! Server is running on port ${PORT}`));
