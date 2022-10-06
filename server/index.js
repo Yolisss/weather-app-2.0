@@ -6,11 +6,15 @@ import fetch from "node-fetch";
 dotenv.config();
 const app = express();
 const PORT = 4002;
+
 app.use(cors());
+
 console.log(`Your api key is ${process.env.REACT_APP_API_KEY}`);
-app.get("/", (req, res) => {
-  res.json("Weather App Information");
-});
+
+// app.get("/", (req, res) => {
+//   res.json("Weather App Information");
+// });
+
 let URL = `https://api.openweathermap.org/data/2.5/weather?zip=92111,us&APPID=${process.env.REACT_APP_API_KEY}&units=imperial`;
 console.log(process.env.REACT_APP_API_KEY, "API KIMBERLY");
 
