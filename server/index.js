@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { Router } from "express";
 import fetch from "node-fetch";
 
 dotenv.config();
@@ -9,16 +10,14 @@ const PORT = 4002;
 
 app.use(cors());
 
-console.log(`Your api key is ${process.env.REACT_APP_API_KEY}`);
-
-// app.get("/", (req, res) => {
-//   res.json("Weather App Information");
-// });
-
-let URL = `https://api.openweathermap.org/data/2.5/weather?zip=92111,us&APPID=${process.env.REACT_APP_API_KEY}&units=imperial`;
+//storing api data in variable URL
+let URL = `https://api.openweathermap.org/data/2.5/weather?zip=95076,us&APPID=${process.env.REACT_APP_API_KEY}&units=imperial`;
 console.log(process.env.REACT_APP_API_KEY, "API KIMBERLY");
 
-app.get("/api/weather", (req, res) => {
+//beginning of get request
+app.get(`/api/weather/`, (req, res) => {
+  //fetching data from api by passing in URL which hold the api data
+
   fetch(URL)
     .then((response) => response.json())
     .then((data) => {
