@@ -16,10 +16,11 @@ console.log(process.env.REACT_APP_API_KEY, "API KIMBERLY");
 
 //beginning of get request
 app.get(`/api/weather/`, (req, res) => {
-  //fetching data from api by passing in URL which hold the api data
-
+  //fetching data from api by passing in URL which holds the api data
   fetch(URL)
+    //response from api will return in json form (more readable code)
     .then((response) => response.json())
+    //data will then be sent back to server
     .then((data) => {
       res.send(data);
     });

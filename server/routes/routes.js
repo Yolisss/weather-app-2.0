@@ -1,11 +1,23 @@
+//express is a framework for node.js
+//defines diff routes or middleware to handle the client's different incoming requests
+
+//1.importing express module
 import express from "express";
 import cors from "cors";
 import db from "./dbConnection.js"
 import fetch from "node-fetch";
 
 //connecting express to router
+//routing refers to determining how an application responds to a client request to a particular endpoint
+//which is URL (or path) and a specific HTTP request method (GET, POST etc)
+
+
+//2. creating express router
 const router = express.Router();
 
+
+//handling request using router
+//this is when client is redirecting you to this route
 router.get("/", async function (req, res, next) {
   try {
     const users = await db.any("SELECT * FROM users_favorites", [true]);
@@ -104,4 +116,6 @@ router.delete("/:id", async (req, res) => {
     return res.status(500).json({ message: "error on server side " });
   }
 });
+
+//exporting router
 export default router;
